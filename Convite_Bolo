@@ -6,15 +6,15 @@ function criarEventosRecorrentes() {
   var dataFim = new Date("2024-06-26T23:59:59"); // Data de fim
   var numeroSemanas = 52; // Número de semanas para criar eventos recorrentes
   var listaConvidados = [
-    { nome: "Flora", email: "f$$$$$$$$$$$$$$.com" },
-    { nome: "Fetter", email: "a$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Rafael", email: "$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Gabriel", email: "g$$$$$$$$$$$$$$o@gmail.com" },
-    { nome: "Luiza", email: "l$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Gabi", email: "f$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Larissa", email: "l$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Pamela", email: "p$$$$$$$$$$$$$$@gmail.com" },
-    { nome: "Daniel", email: "e$$$$$$$$$$$$$$@gmail.com" }
+    { nome: "Flora", email: "flora.ufsc24@gmail.com" },
+    { nome: "Fetter", email: "antoniofetter@gmail.com" },
+    { nome: "Rafael", email: "rafael.bittencourt.2002@gmail.com" },
+    { nome: "Gabriel", email: "gabrielsantincoutinho@gmail.com" },
+    { nome: "Luiza", email: "lpfiorini@gmail.com" },
+    { nome: "Gabi", email: "ffreiregabriela@gmail.com" },
+    { nome: "Larissa", email: "larissa98ranny@gmail.com" },
+    { nome: "Pamela", email: "pamela.costa2872@gmail.com" },
+    { nome: "Daniel", email: "efraimedaniel@gmail.com" }
   ]; // Lista de convidados
 
   // Calcular intervalo entre os eventos (uma semana)
@@ -38,6 +38,9 @@ function criarEventosRecorrentes() {
 
     // Criar evento no calendário
     criarEvento(calendario, dataEvento, tituloEvento, [convidado.email]);
+
+    // Enviar convite por e-mail
+    enviarConvitePorEmail(convidado.email, tituloEvento, dataEvento);
   }
 }
 
@@ -52,6 +55,16 @@ function criarEvento(calendario, data, titulo, convidados) {
       guests: convidados.join(','), // Adiciona convidados ao evento
     }
   );
+}
 
-  Logger.log("Evento criado: %s", evento.getId());
+
+function enviarConvitePorEmail(email, tituloEvento, dataEvento) {
+  var corpoEmail = "Você está convidado para o evento: " + tituloEvento + " no dia " + dataEvento.toLocaleDateString();
+
+  // Enviar e-mail
+  MailApp.sendEmail({
+    to: email,
+    subject: "Convite para evento",
+    body: corpoEmail
+  });
 }
