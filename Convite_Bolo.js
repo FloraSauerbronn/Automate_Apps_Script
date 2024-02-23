@@ -59,7 +59,7 @@ function criarEvento(calendario, data, titulo, convidados) {
 
 
 function enviarConvitePorEmail(email, tituloEvento, dataEvento) {
-  var corpoEmail = "Você está convidado para o evento: " + tituloEvento + " no dia " + dataEvento.toLocaleDateString();
+  var corpoEmail = "Você está convidado para o evento: " + tituloEvento + " no dia " + dataEvento.toLocaleDateString('pt-BR');
 
   // Enviar e-mail
   MailApp.sendEmail({
